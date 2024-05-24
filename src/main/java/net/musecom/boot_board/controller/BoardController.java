@@ -39,6 +39,14 @@ public class BoardController {
     @GetMapping("/paging")
     public String paging(@PageableDefault(page = 1) Pageable pageable, Model model){
         Page<BoardDto> boardList = bService.paging(pageable);
+        int blockLimit = 3; //한 페이지에 보여질 페이지수
+        //1. 4. 7. 10...이런식으로 나갈듯
+        int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1 ) * blockLimit + 1;
+        int endPage = ((startPage + blockLimit - 1) < boardList.getTotalPages()) ? startPage + blockLimit - 1 : boardList.getTotalPages();
+        //model에 담아 보내기
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("startpage", startPage);
+        model.addAttribute("endPage", endPage);
         return "paging";
     }
 

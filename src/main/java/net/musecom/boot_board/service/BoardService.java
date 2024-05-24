@@ -91,6 +91,7 @@ public class BoardService {
           System.out.println("7. 다음 페이지 : " + bEntities.hasNext());
           System.out.println("8. 첫 페이지 : " + bEntities.isFirst());
           System.out.println("9. 마지막 페이지 : " + bEntities.isLast());
+          
 
          // 목록에서 보여줄 내용 id, bwriter, hits, title, createdTime
          Page<BoardDto> boardDtos = bEntities.map( board -> new BoardDto(board.getId(), board.getBwriter(),board.getHits(),board.getTitle(),board.getCreatedTime())); 
