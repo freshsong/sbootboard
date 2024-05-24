@@ -76,7 +76,7 @@ public class BoardService {
 
     public Page<BoardDto> paging(Pageable pageable){
         int page = pageable.getPageNumber() - 1;
-        int pageLimit = 5; //한 페이지에 보여줄 글의 갯 수
+        int pageLimit = 10; //한 페이지에 보여줄 글의 갯 수
         // select * from bbs limit 0==>page, 10==>pageLimit;
         
         Page<BoardEntity> bEntities = 
