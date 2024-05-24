@@ -1,0 +1,23 @@
+#server
+server:
+  port: 8081
+
+#spring
+#db연동
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spboot?serverTimezone=Asia/Seoul&characterEncoding=utf-8
+    username: root
+    password: "chlthgml920!!"
+  thymeleaf:
+    cache: false
+
+  #jpa
+  jpa: 
+    database-platform: org.hibernate.dialect.MySQLDialect #mysql8에서는 버전명쓰지 않음
+    open-in-view: false
+    show-sql: true
+    hibernate: 
+      ddl-auto: update #none(엔티티변경해도 db는 변경하지 않음) update(변경된 부분만 적용) validate(변경사항검사) create(서버시작시 drop하고 새로 시작) 
+      

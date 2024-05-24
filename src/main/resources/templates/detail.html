@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head th:replace="header :: head">
+</head>
+<body>
+  <div class="container">  
+    <div th:replace="header :: body"></div>
+    <table class="table">
+        <tr>
+            <th>번호</th>
+            <td th:text="${board.id}"></td>
+        </tr>
+        <tr>
+            <th>글쓴이</th>
+            <td th:text="${board.bwriter}"></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td th:text="${board.title}"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td th:utext="${board.contents}"></td> <!--utext는 html태그를 지워줌 -->
+        </tr>
+        <tr>
+            <th>조회수</th>
+            <td th:text="${board.hits}"></td>
+        </tr>
+        <tr>
+            <th>날짜</th>
+            <td th:text="${board.bbsCreatedTime}"></td>
+        </tr>
+    </table>
+  <a href="/board/write">글쓰기</a>
+  <a href="/board/">목록으로</a>
+  <a th:href="@{|/board/update/${board.id}|}">수정</a>
+  <a th:href="@{|/board/delete/${board.id}|}">삭제</a>
+  <a href="/">홈으로</a>
+    <div th:replace="footer :: body"></div>
+  </div>
+</body>
+</html> 

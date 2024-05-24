@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head th:replace="header :: head">
+</head>
+<body>
+    <div th:if="${error}" th:text="${error}" id="error" style="display:none"></div>
+  <div class="container">  
+    <div th:replace="header :: body"></div>
+    <h2 class="mt-5 mb-2 text-center">글삭제 비밀번호 확인</h2>
+    <p class="text-center mb-5">게시글 삭제를 위한 비밀번호를 입력하세요.</p>
+    <form action="/board/delete" class="myform text-center col-6 mx-auto p-5" method="post">
+        <input type="hidden" th:value="${id}" name="id"/>
+        <div class="form-group">
+            <h4 class="text-center">비밀번호</h4>
+            <input type="password" class="form-control" id="password"
+                name="pass" placeholder="비밀번호">
+        </div>
+        <button type="submit" class="btn btn-danger">삭제</button>
+    </form>
+  <a href="/board/">목록으로</a>
+  <a href="/">홈으로</a>
+    <div th:replace="footer :: body"></div>
+  </div>
+  <script>
+  $(function(){
+        CKEDITOR.replace("editor");
+
+        const error = $('#error').text();
+        if(error){
+            alert(error);
+        }
+    });
+</script>
+</body>
+</html> 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head th:replace="header :: head">
+</head>
+<body>
+  <div class="container">  
+    <div th:replace="header :: body"></div>
+    <table class="table table-striped">
+        <colgroup>
+           <col width="8%">
+           <col>
+           <col width="15%">
+           <col width="15%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">제목</th>
+                <th scope="col">글쓴이</th>
+                <th scope="col">날짜</th>
+                <th scope="col">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 루프 -->
+            <tr th:each="list: ${lists}">
+                <td th:text="${list.id}"></td>
+                <td><a th:href="@{|/board/${list.id}|}" th:text="${list.title}"></a></td>
+                <td th:text="${list.bwriter}"></td>
+                <td th:text="*{#temporals.format(list.bbsCreatedTime, 'yyyy-MM-dd HH')}"></td>
+                <td th:text="${list.hits}"></td>
+            </tr>
+        </tbody>
+    </table>
+  <a href="/board/write">글쓰기</a>
+  <a href="/">홈으로</a>
+    <div th:replace="footer :: body"></div>
+  </div>
+</body>
+</html>
