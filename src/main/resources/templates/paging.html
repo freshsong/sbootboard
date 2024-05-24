@@ -37,7 +37,7 @@
         <!-- 첫 페이지 이동 -->
         <a th:href="@{/board/paging(page=1)}" class="page-link">first</a>
         <!-- 이전 페이지 있으면 활성, 없으면 비활성화 -->
-        <a class="page-link" th:href="{boardlist.first} ? '#': @{/board/paging(page=${boardList.number})}">prev</a>
+        <a class="page-link" th:href="${boardlist.first} ? '#': @{/board/paging(page=${boardList.number})}">prev</a>
         <!-- 페이지 번호 루프 -->
         <!--for(int page=startpage; page<=endPage; page++)의 의미가아래줄-->
         <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
