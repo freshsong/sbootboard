@@ -23,36 +23,36 @@
         </thead>
         <tbody>
             <!-- 루프 -->
-            <tr th:each="list: ${boardList}"> <!--얘만 수정하면됨-->
+            <tr th:each="list: ${boardList}">
                 <td th:text="${list.id}"></td>
                 <td><a th:href="@{|/board/${list.id}|}" th:text="${list.title}"></a></td>
                 <td th:text="${list.bwriter}"></td>
-                <td th:text="*{#temporals.format(list.bbsCreatedTime, 'yyyy-MM-dd HH')}"></td>
+                <td th:text="${#temporals.format(list.bbsCreatedTime, 'yyyy-MM-dd HH')}"></td>
                 <td th:text="${list.hits}"></td>
             </tr>
         </tbody>
     </table>
     <div class="pagination">
-        <!-- 나중에 아이콘같은거 넣어서 변경 -->
-        <!-- 첫 페이지 이동 -->
-        <a th:href="@{/board/paging(page=1)}" class="page-link">first</a>
-        <!-- 이전 페이지 있으면 활성, 없으면 비활성화 -->
-        <a class="page-link" th:href="${boardlist.first} ? '#': @{/board/paging(page=${boardList.number})}">prev</a>
-        <!-- 페이지 번호 루프 -->
-        <!--for(int page=startpage; page<=endPage; page++)의 의미가아래줄-->
-        <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
-            <!--현재페이지면 링크가 안걸리게-->
-            <span class="page-link" th:if="${page==boardList.number+1}" th:text="${page}"></span> 
-            <!--현재 페이지 아니면 링크가 걸리게 (number=boardList에서 가져온거)-->
-            <span th:unless="${page==boardList.number+1}">
-                <a class="page-link" th:href="@{/board/paging(page=${page})}" th:text="${page}"></a>
-            </span>
-        </span>
-     <!-- 다음 페이지 있으면 활성, 없으면 비활성화 -->
-     <a class="page-link" th:href="${boardList.last} ? '#': @{/board/paging(page=${boardList.number + 2})}">next</a>
+       <!-- 첫 페이지 이동 --> 
+       <a th:href="@{/board/paging(page=1)}" class="page-link">first</a>
 
-     <!-- 마지막 페이지 이동 -->
-     <a class="page-link" th:href="@{/board/paging(page=${boardList.totalPages})}">Last</a>
+       <!-- 이전 페이지 있으면 활성, 없으면 비활성 -->
+       <a class="page-link" th:href="${boardList.first} ? '#': @{/board/paging(page=${boardList.number})}">prev</a>
+
+       <!-- 페이지 번호 루프 -->
+       <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+          <!--현재페이지면 링크 안검-->
+          <span class="page-link" th:if="${page==boardList.number+1}" th:text="${page}"></span> 
+          <!--현재페이지 아니면 링크를 검-->
+          <span th:unless="${page==boardList.number+1}">
+              <a class="page-link" th:href="@{/board/paging(page=${page})}" th:text="${page}"></a>
+          </span>
+       </span>
+
+       <!-- 다음 페이지 있으면 활성, 없으면 비활성 -->
+       <a class="page-link" th:href="${boardList.last} ? '#': @{/board/paging(page=${boardList.number + 2})}">next</a>
+       <!-- 마지막 페이지 이동-->
+       <a class="page-link" th:href="@{/board/paging(page=${boardList.totalPages})}">Last</a>
     </div>
   <a href="/board/write">글쓰기</a>
   <a href="/">홈으로</a>
